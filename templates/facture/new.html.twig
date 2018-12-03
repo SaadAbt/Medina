@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Nouvelle Facture{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Nouvelle Facture	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    {{ include('facture/_form.html.twig') }}
+
+    <a href="{{ path('facture_index') }}">back to list</a>
+{% endblock %}

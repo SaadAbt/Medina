@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Nouvelle Categorie{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Nouvelle Catégories	<a href="#" style="float: right;" class="light"></a>
+    </div>
+    {{ include('categorie/_form.html.twig') }}
+
+    <a href="{{ path('categorie_index') }}">back to list</a>
+{% endblock %}

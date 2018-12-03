@@ -1,0 +1,43 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Store index{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Stores	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for store in stores %}
+            <tr>
+                <td>{{ store.id }}</td>
+                <td>{{ store.Adresse }}</td>
+                <td>{{ store.Tel }}</td>
+                <td>{{ store.Description }}</td>
+                <td>
+                    <a href="{{ path('store_show', {'id': store.id}) }}"><img src="{{ asset('assets/images/show.png') }}" alt="Symfony!" height="42" width="42" /></a>
+                    <a href="{{ path('store_edit', {'id': store.id}) }}"><img src="{{ asset('assets/images/edit.png') }}" alt="Symfony!" height="42" width="42" /></a>
+                    <a href="{{ path('store_delete', {'id': store.id}) }}"><img src="{{ asset('assets/images/delete.png') }}" alt="Symfony!" height="42" width="42" /></a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('store_new') }}"><img src="{{ asset('assets/images/add.png') }}" alt="Symfony!" height="42" width="42" /></a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Store{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Nouveau store	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    {{ include('store/_form.html.twig') }}
+
+    <a href="{{ path('store_index') }}">back to list</a>
+{% endblock %}

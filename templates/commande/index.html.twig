@@ -1,0 +1,40 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Commande	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCommande</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.DateCommande ? commande.DateCommande|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.Montant }}</td>
+                <td>
+                    <a href="{{ path('commande_show', {'id': commande.id}) }}"><img src="{{ asset('assets/images/show.png') }}" alt="Symfony!" height="42" width="42" /></a>
+                    <a href="{{ path('commande_edit', {'id': commande.id}) }}"><img src="{{ asset('assets/images/edit.png') }}" alt="Symfony!" height="42" width="42" /></a>
+                    <a href="{{ path('commande_delete', {'id': commande.id}) }}"><img src="{{ asset('assets/images/delete.png') }}" alt="Symfony!" height="42" width="42" /></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commande_new') }}"><img src="{{ asset('assets/images/add.png') }}" alt="Symfony!" height="42" width="42" /></a>
+{% endblock %}
