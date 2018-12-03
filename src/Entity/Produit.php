@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,29 @@ class Produit
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="produit")
+     */
+    private $commentaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
+     */
+    private $categorie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="produit")
+     */
+    private $commande;
+
+    public function __construct()
+    {
+        $this->commentaire = new ArrayCollection();
+        $this->commande = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -121,5 +146,82 @@ class Produit
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaire->contains($commentaire)) {
+            $this->commentaire->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduit() === $this) {
+                $commentaire->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommande(): Collection
+    {
+        return $this->commande;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commande->contains($commande)) {
+            $this->commande[] = $commande;
+            $commande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commande->contains($commande)) {
+            $this->commande->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getProduit() === $this) {
+                $commande->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->NomProduit;
     }
 }

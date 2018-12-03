@@ -6,7 +6,7 @@
 
     {{ form_start(form) }}
 
-    {{ form_row(form.Profile,{'label':'Profile','attr':{'placeholder':'profile'}}) }}
+
     {{ form_row(form.username,{'label':'Username','attr':{'placeholder':'Username'}}) }}
     {{ form_row(form.email,{'label':'email','attr':{'placeholder':'Entrez votre email'}}) }}
     {{ form_row(form.Nom,{'label':'Nom','attr':{'placeholder':'Entrez votre nom'}}) }}
@@ -17,8 +17,12 @@
     {{ form_row(form.CodePostal,{'label':'Code Postal','attr':{'placeholder':'Entrez votre Code Postal'}}) }}
     {{ form_row(form.password,{'label':'password','attr':{'placeholder':'********'}}) }}
     {{ form_row(form.confirmpassword,{'label':'confirmpassword','attr':{'placeholder':'********'}}) }}
-    <button type="submit" class="btn btn-success">Inscription</button>
-    {{ form_end(form) }}
 
+
+
+
+    <button type="submit" class="btn btn-success">Inscription</button>
+
+    {{ form_end(form) }}
 
 {% endblock body %}

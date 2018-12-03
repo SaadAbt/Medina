@@ -1,0 +1,491 @@
+/*
+** Fonts & Variables
+***********************************************************/
+@import url("https://fonts.googleapis.com/css?family=Cookie");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+/*
+** Reset
+***********************************************************/
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body {
+    height: 100%;
+    font: 13px/1 'Open Sans', sans-serif;
+    color: #555;
+    background: #eeeeee;
+}
+
+a {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+p {
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+}
+
+input, select {
+    border: 1px solid silver;
+    padding: 4px;
+    margin: 5px;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/*
+** Layout
+***********************************************************/
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.header, .header a {
+    height: 50px;
+    color: #eeeeee;
+    background: #303030;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header .title {
+    width: 200px;
+    font: 30px/50px Cookie, sans-serif;
+    text-align: center;
+}
+
+.header .user {
+    position: absolute;
+    top: 17px;
+    right: 35px;
+    font-weight: 600;
+}
+
+.header .name,
+.header .logout {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.header .name:before,
+.header .logout:before {
+    content: '\f007';
+    font-family: fontawesome;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.header .name {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #eeeeee;
+}
+
+.header .logout:before {
+    content: '\f023';
+}
+
+.main {
+    display: flex;
+    flex: 1;
+}
+
+.nav {
+    width: 200px;
+    background: #404040;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.nav .search {
+    position: relative;
+    height: 45px;
+    border-bottom: 1px solid #272727;
+}
+
+.nav .search:before {
+    content: '\f002';
+    font: 14px fontawesome;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    color: #777;
+}
+
+.nav .search input {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    display: block;
+    width: 150px;
+    height: 45px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #777;
+    background: none;
+    border: none!important;
+}
+
+.nav .search [placeholder]::-webkit-input-placeholder {
+    color: #777;
+}
+
+.nav .search [placeholder]:hover::-webkit-input-placeholder {
+    color: #555;
+}
+
+.nav .search [placeholder]:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.nav li a {
+    position: relative;
+    display: block;
+    padding: 15px 15px 15px 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #eeeeee;
+    border-bottom: 1px solid #272727;
+    text-decoration: none;
+}
+
+.nav li a:before {
+    font: 14px fontawesome;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+}
+
+.nav li:nth-child(1) a:before {
+    content: '\f00a';
+}
+
+.nav li:nth-child(2) a:before {
+    content: '\f012';
+}
+
+.nav li:nth-child(3) a:before {
+    content: '\f0e8';
+}
+
+.nav li:nth-child(4) a:before {
+    content: '\f0c3';
+}
+
+.nav li:nth-child(5) a:before {
+    content: '\f022';
+}
+
+.nav li:nth-child(6) a:before {
+    content: '\f115';
+}
+
+.nav li:nth-child(7) a:before {
+    content: '\f085';
+}
+
+.nav li a:hover {
+    background: #535353;
+}
+
+.nav li a.active {
+    box-shadow: inset 5px 0 0 #dd3333, inset 6px 0 0 #272727;
+    background: #535353;
+}
+
+.nav li a.active2 {
+    box-shadow: inset 5px 0 0 #DD8B33, inset 6px 0 0 #272727;
+    background: #7A7A7A;
+}
+
+.nav ul ul {
+    background: #333333;
+}
+
+.nav li li a {
+    padding: 10px 10px 10px 50px;
+}
+
+.nav li li a:before {
+    content: '\f148' !important;
+    font: 10px fontawesome;
+    top: 10px;
+    left: 25px;
+    transform: rotate(90deg);
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+    transition: background 0.1s linear;
+    -webkit-transition: background 0.1s linear;
+    -moz-transition: background 0.1s linear;
+    -ms-transition: background 0.1s linear;
+    -o-transition: background 0.1s linear;
+}
+
+.content .title {
+    margin: 0 0 30px;
+    font: 35px Cookie, sans-serif;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    padding: 10px;
+    margin-left: -30px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.63);
+}
+
+.menu_accueil li {
+    float: left;
+    margin: 11px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: #4EB7E9;
+    font-weight: bold;
+}
+
+.menu_cacher {
+    display: none;
+}
+
+.display_block {
+    display: block!important;
+}
+
+.erreurlaite, .succeslaite {
+    border-radius: 3px;
+    font: bold 1em sans-serif;
+    margin: 1em 2em;
+    padding: 1em;
+    text-align: center;
+}
+.erreurlaite {
+    color: #fff;
+    background: #B66;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.succeslaite {
+    color: #fff;
+    background: #6b6;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*
+** Grid
+***********************************************************/
+.grid {
+    display: flex;
+}
+
+.grid .col {
+    flex: 1;
+    margin: 0 30px 30px 0;
+    padding: 15px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.grid .col:last-child {
+    margin-right: 0;
+}
+
+.grid .col .head {
+    margin: -15px -15px 15px -15px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/*
+** Tables
+***********************************************************/
+table {
+    width: calc(100% + 28px);
+    border-collapse: collapse;
+    margin: -16px -14px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #eeeeee;
+}
+
+th:first-child,
+td:first-child {
+    border-left: 0;
+}
+
+th:last-child,
+td:last-child {
+    border-right: 0;
+}
+
+th {
+    background: #f8f8f8;
+}
+
+tr:nth-child(odd) {
+    background: #f8f8f8;
+}
+
+/*
+** Buttons
+***********************************************************/
+.btnset {
+    margin: 15px -15px -15px -15px;
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #eeeeee;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 100px;
+    margin-left: 10px;
+    padding: 10px 15px 12px;
+    font: 700 12px/1 'Open Sans', sans-serif;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn.act {
+    color: #fff;
+    background: #59d;
+}
+
+.btn.act:hover {
+    background: #4488cc;
+}
+
+.btn.pri {
+    color: #fff;
+    background: #6b6;
+}
+
+.btn.pri:hover {
+    background: #55aa55;
+}
+
+.btn.sec {
+    color: #999;
+    background: rgb(243, 243, 243);
+}
+
+.btn.sec:hover {
+    background: rgb(226, 226, 226);
+}
+
+/*
+** Theme
+***********************************************************/
+
+.night {
+    background: #303030;
+}
+.night .grid .col, .night .footer {
+    background: #949494;
+    color: #eeeeee;
+}
+.night .title {
+    color: #eeeeee;
+}
+.night .grid .col .head {
+    border-bottom: 1px solid #020202;
+}
+.night tr:nth-child(odd) {
+    color: #303030;
+}
+.light:after {
+    content: "\263e";
+    color: #5e606b;
+}
+.night .light:after {
+    content: "\2600";
+    color: #eeeeee;
+}
+
+/*
+** Media Queries
+***********************************************************/
+@media (max-width: 1000px) {
+    .grid {
+        flex-direction: column;
+    }
+
+    .grid .col {
+        margin-right: 0;
+    }
+}
+@media (max-width: 800px) {
+    .nav {
+        width: 180px;
+    }
+
+    .nav .search input {
+        width: 130px;
+    }
+}
+@media (max-width: 600px) {
+    .nav {
+        width: 160px;
+    }
+
+    .nav .search input {
+        width: 110px;
+    }
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

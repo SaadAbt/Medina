@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -85,6 +87,24 @@ class Utilisateur implements UserInterface
      */
 
     public $confirmpassword;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Store", inversedBy="utilisateur", cascade={"persist", "remove"})
+     */
+    private $store;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="utilisateur")
+     */
+    private $commentaire;
+
+    public function __construct()
+    {
+        $this->commentaire = new ArrayCollection();
+    }
+
+
+
 
     public function getId(): ?int
     {
@@ -225,4 +245,53 @@ class Utilisateur implements UserInterface
         // TODO: Implement getRoles() method.
         return ['ROLE_USER'];
     }
+
+    public function getStore(): ?Store
+    {
+        return $this->store;
+    }
+
+    public function setStore(?Store $store): self
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaire->contains($commentaire)) {
+            $this->commentaire->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUtilisateur() === $this) {
+                $commentaire->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->Nom;
+    }
+
+
 }

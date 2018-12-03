@@ -26,6 +26,16 @@ class Commande
      */
     private $Montant;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="commande")
+     */
+    private $produit;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Facture", inversedBy="commande", cascade={"persist", "remove"})
+     */
+    private $facture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,5 +63,32 @@ class Commande
         $this->Montant = $Montant;
 
         return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getFacture(): ?Facture
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(?Facture $facture): self
+    {
+        $this->facture = $facture;
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->DateCommande;
     }
 }

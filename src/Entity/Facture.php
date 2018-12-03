@@ -26,6 +26,11 @@ class Facture
      */
     private $Total;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Commande", mappedBy="facture", cascade={"persist", "remove"})
+     */
+    private $commande;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,24 @@ class Facture
     public function setTotal(float $Total): self
     {
         $this->Total = $Total;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newFacture = $commande === null ? null : $this;
+        if ($newFacture !== $commande->getFacture()) {
+            $commande->setFacture($newFacture);
+        }
 
         return $this;
     }

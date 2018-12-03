@@ -31,6 +31,12 @@ class Store
      */
     private $Description;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Utilisateur", mappedBy="store", cascade={"persist", "remove"})
+     */
+    private $utilisateur;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,4 +77,27 @@ class Store
 
         return $this;
     }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newStore = $utilisateur === null ? null : $this;
+        if ($newStore !== $utilisateur->getStore()) {
+            $utilisateur->setStore($newStore);
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->Adresse;
+    }
+
 }

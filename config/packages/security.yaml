@@ -20,7 +20,7 @@ security:
               login_path: login
               check_path: login
             logout:
-              path: logout
+              path: lely, the firewall can handle this automatically for you when you activate the logout config parameter:ogout
               target: registration
 
             # activate different ways to authenticate

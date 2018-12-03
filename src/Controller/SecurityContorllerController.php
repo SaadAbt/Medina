@@ -26,6 +26,7 @@ class SecurityContorllerController extends AbstractController
         {
              $hash = $encoder->encodePassword($utilisateur , $utilisateur->getPassword());
              $utilisateur->setPassword($hash);
+             $utilisateur->setProfile(1);
              $manager->persist($utilisateur);
              $manager->flush();
              return $this->redirectToRoute('login');
