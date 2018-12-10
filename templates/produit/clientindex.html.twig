@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Produits	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>NomProduit</th>
+            <th>Prix</th>
+            <th>Description</th>
+            <th>Quantite</th>
+            <th>Remise</th>
+            <th>Image</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.NomProduit }}</td>
+                <td>{{ produit.Prix }}</td>
+                <td>{{ produit.Description }}</td>
+                <td>{{ produit.Quantite }}</td>
+                <td>{{ produit.Remise }}</td>
+                <td>{{ produit.image }}</td>
+                <td>
+                    {% for commentaire in produit.commentaire %}
+                        <div class="row post-comment">
+                            <a name="comment_{{ commentaire.id }}"></a>
+                            <h4 class="col-sm-3">
+                                <strong>{{ commentaire.utilisateur.username }}</strong>
+                            </h4>
+                            <div class="col-sm-9">
+                                {{ commentaire.text}}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="post-comment">
+                            <p>aucun commentaire</p>
+                        </div>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('produit_new') }}"><img src="{{ asset('assets/images/add.png') }}" alt="Symfony!" height="42" width="42" /></a>
+{% endblock %}

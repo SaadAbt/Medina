@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <div class='title'>
+        Produits	<a href="#" style="float: right;" class="light"></a>
+    </div>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ produit.id }}</td>
+        </tr>
+        <tr>
+            <th>NomProduit</th>
+            <td>{{ produit.NomProduit }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ produit.Prix }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ produit.Description }}</td>
+        </tr>
+        <tr>
+            <th>Quantite</th>
+            <td>{{ produit.Quantite }}</td>
+        </tr>
+        <tr>
+            <th>Remise</th>
+            <td>{{ produit.Remise }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>{{ produit.image }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

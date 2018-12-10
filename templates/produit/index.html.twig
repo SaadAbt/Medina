@@ -29,7 +29,7 @@
                 <td>{{ produit.Description }}</td>
                 <td>{{ produit.Quantite }}</td>
                 <td>{{ produit.Remise }}</td>
-                <td>{{ produit.image }}</td>
+                <td><img src="{{ asset('assets/images/' ~ produit.image) }}" height="70" width="70"></td>
                 <td>
                     <a href="{{ path('produit_show', {'id': produit.id}) }}"><img src="{{ asset('assets/images/show.png') }}" alt="Symfony!" height="42" width="42" /></a>
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}"><img src="{{ asset('assets/images/edit.png') }}" alt="Symfony!" height="42" width="42" /></a>
@@ -37,6 +37,7 @@
 
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="8">no records found</td>

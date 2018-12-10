@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/produit")
  */
@@ -18,6 +19,7 @@ class ProduitController extends AbstractController
     /**
      * @Route("/", name="produit_index", methods="GET")
      */
+
     public function index(ProduitRepository $produitRepository): Response
     {
         return $this->render('produit/index.html.twig', ['produits' => $produitRepository->findAll()]);
@@ -33,9 +35,14 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image=$produit->getImage();
+            $imageName = md5(uniqid()).'.'.$image->guessExtension();
+            $image->move($this->getParameter('image_directory'),$imageName);
+            $produit->setImage($imageName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+
 
             return $this->redirectToRoute('produit_index');
         }
@@ -46,7 +53,8 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    /**
+
+        /**
      * @Route("/{id}", name="produit_show", methods="GET")
      */
     public function show(Produit $produit): Response
