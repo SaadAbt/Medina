@@ -35,10 +35,7 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image=$produit->getImage();
-            $imageName = md5(uniqid()).'.'.$image->guessExtension();
-            $image->move($this->getParameter('image_directory'),$imageName);
-            $produit->setImage($imageName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
